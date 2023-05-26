@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "72be163c-2ff1-4de2-9084-e2b9a31123cf"
+      }
+    },
+    "owner": "hafizhisham"
   }
 }

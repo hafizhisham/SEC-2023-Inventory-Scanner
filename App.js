@@ -1,20 +1,81 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// In App.js in a new project
 
-export default function App() {
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "./screens/Home";
+import ScannerScreen from "./screens/QrScanner";
+import GeneratorScreen from "./screens/QrGenerator";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function HomeTabs() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Tab.Navigator
+      initialRouteName="Feed"
+      screenOptions={{
+        tabBarActiveTintColor: "#8E3200",
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="QR Scanner"
+        component={ScannerScreen}
+        options={{
+          tabBarLabel: "QR Scanner",
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: "#D7A86E" },
+          headerTitleStyle: { color: "black" },
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="qrcode-scan"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="QR Generator"
+        component={GeneratorScreen}
+        options={{
+          tabBarLabel: "QR Generator",
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: "#D7A86E" },
+          headerTitleStyle: { color: "black" },
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="qrcode" color={color} size={size} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function App() {
+  const Stack = createNativeStackNavigator();
+  const defaultHeaderStyle = {
+    headerStyle: { backgroundColor: "blue" },
+    headerTitleStyle: { color: "white" },
+    headerTitleAlign: "center",
+  };
+  return (
+    <NavigationContainer>
+      <HomeTabs />
+    </NavigationContainer>
+  );
+}
+
+export default App;
