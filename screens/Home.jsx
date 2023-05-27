@@ -40,6 +40,22 @@ function HomeScreen(props) {
         <Image source={assets[0]} style={{ width: 300, height: 230 }} />
       ) : null}
 
+      <Text
+        style={{
+          color: "#CC9544",
+          fontSize: 15,
+          fontWeight: "bold",
+          marginTop: 20,
+        }}
+      >
+        SCAN{" "}
+        <Text style={{ color: "black", fontSize: 15, fontWeight: "bold" }}>
+          QR CODE
+        </Text>
+      </Text>
+      <Text style={{ color: "#CC9544", fontSize: 15, fontWeight: "bold" }}>
+        FOR BOX CONTENTS
+      </Text>
       <Pressable
         onPress={() => props.navigation.navigate("QR Scanner")}
         style={{
@@ -48,7 +64,7 @@ function HomeScreen(props) {
           alignItems: "center",
           justifyContent: "center",
           gap: 8,
-          marginTop: 30,
+          marginTop: 35,
           backgroundColor: "#9E6F21",
           paddingHorizontal: 10,
           paddingVertical: 8,
